@@ -1,6 +1,6 @@
-# FIND: Fine-tuning Initial Noise Distribution with Policy Optimization for Diffusion Models
+# LMP: Leveraging Motion Prior in Zero-Shot Video Generation with Diffusion Transformer
 
-This is the repository that contains source code for the [FIND website](https://vpx-ecnu.github.io/FIND-website/).
+This is the repository that contains source code for the [LMP website](https://vpx-ecnu.github.io/LMP-Website/).
 
 <!-- If you find ClothPPO useful for your work please cite:
 ```

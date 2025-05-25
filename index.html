@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="FIND: Fine-tuning Initial Noise Distribution with Policy Optimization for Diffusion Models">
+        content="LMP: Leveraging Motion Prior in Zero-Shot Video Generation with Diffusion Transformer">
   <meta name="keywords" content="Multimodal Generation, Diffusion Model, Controllable Generation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FIND: Fine-tuning Initial Noise Distribution with Policy Optimization for Diffusion Models</title>
+  <title>LMP: Leveraging Motion Prior in Zero-Shot Video Generation with Diffusion Transformer</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -39,6 +39,100 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <style>
+  .video-comparison-container {
+    max-width: 1000px;
+    margin: 10px auto;
+    padding: 0 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  .video-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px 0;
+    gap: 8px;
+  }
+
+  .video-container {
+    flex: 0 0 30%;
+    position: relative;
+    padding-bottom: 20%;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .arrow-container {
+    flex: 0 0 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .arrow {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 20px solid #333;
+    margin: 5px 0;
+  }
+
+  .arrow-text {
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #333;
+    padding: 3px;
+    background: #f0f0f0;
+    border-radius: 3px;
+    width: 100%;
+  }
+
+  .row-caption {
+    max-width: 80%;
+    text-align: center;
+    margin: 10px auto 30px;
+    padding: 8px;
+    background: #f8f8f8;
+    border-radius: 4px;
+    font-size: 0.85em;
+    color: #555;
+  }
+
+  .video-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px; /* 控制视频间距 */
+  margin: 10px 0;
+}
+
+.video-column {
+  flex: 1 1 200px; /* 基础宽度200px，可伸缩 */
+  max-width: 33%; /* 确保每行4个时等宽 */
+  min-width: 200px; /* 最小宽度 */
+}
+
+.video-column video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 720/480; /* 保持正方形，可改为其他比例 */
+  object-fit: cover; /* 填充方式：cover会裁剪，contain会留黑边 */
+  border-radius: 8px; /* 可选圆角 */
+  background: #000; /* 视频加载前的背景色 */
+}
+</style>
 </head>
 <body>
 
@@ -88,18 +182,14 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">FIND: Fine-tuning Initial Noise Distribution with Policy Optimization for Diffusion Models</h1>
+          <h1 class="title is-1 publication-title">LMP: Leveraging Motion Prior in Zero-Shot Video Generation with Diffusion Transformer</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://github.com/Fradino">Changgu Chen</a>,</span>
-            <span class="author-block">
-              <a href="https://github.com/ElcarimQAQ">Libing Yang</a>,</span>
+              <a href="https://scholar.google.com.hk/citations?user=tHfw6EUAAAAJ&hl=zh-CN">Changgu Chen</a>,</span>
             <span class="author-block">
               <a href="https://minisal.github.io/photorama/about">Xiaoyan Yang</a>,</span>
             <span class="author-block">
-              <a href="https://github.com/clgx00">Lianggangxu Chen</a>,</span>
-            <span class="author-block">
-              <a href="https://faculty.ecnu.edu.cn/_s16/hgq2/main.psp">Gaoqi He</a>,</span>
+              <a href="">Junwei Shu</a>,</span>
             <span class="author-block">
               <a href="https://faculty.ecnu.edu.cn/_s16/wzb/main.psp">Changbo Wang</a>,</span>
             <span class="author-block">
@@ -112,15 +202,15 @@
             <span class="author-block">East China Normal University</span>
           </div>
 
-          <div class="is-size-5 publication-authors">
+          <!-- <div class="is-size-5 publication-authors">
             <span class="author-block">ACMMM 2024</span>
-          </div>
+          </div> -->
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2407.19453"
+                <a href="https://arxiv.org/abs/2505.14167"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -129,7 +219,7 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2407.19453"
+                <a href="https://arxiv.org/abs/2505.14167"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -149,7 +239,7 @@
               </span> -->
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/vpx-ecnu/FIND"
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -175,7 +265,7 @@
   </div>
 </section>
 
-<section class="hero teaser">
+<!-- <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <img id="teaser" src="static/find_imgs/fig1_page-0001.jpg" alt="Description of image">
@@ -185,7 +275,53 @@
     var video = document.getElementById('teaser');
     video.playbackRate = 2.5; // 设置视频播放速度为2倍
 </script>
-</section>
+</section> -->
+
+<div class="video-comparison-container">
+  <!-- 第一行 -->
+  <div class="video-row">
+    <div class="video-container left-video">
+      <video controls>
+        <source src="static/lmp_videos/t2v-reference.mp4" type="video/mp4">
+      </video>
+    </div>
+    
+    <div class="arrow-container">
+      <div class="arrow"></div>
+      <div class="arrow-text">text to video</div>
+    </div>
+    
+    <div class="video-container right-video">
+      <video controls>
+        <source src="static/lmp_videos/t2v-ours.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  
+  <div class="row-caption">The batman and spiderman...</div>
+  
+  <!-- 第二行 -->
+  <div class="video-row">
+    <div class="video-container left-video">
+      <video controls>
+        <source src="static/lmp_videos/i2v-reference.mp4" type="video/mp4">
+      </video>
+    </div>
+    
+    <div class="arrow-container">
+      <div class="arrow"></div>
+      <div class="arrow-text">image to video</div>
+    </div>
+    
+    <div class="video-container right-video">
+      <video controls>
+        <source src="static/lmp_videos/i2v-ours.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  
+  <div class="row-caption">A man in a gray suit stands in a room...</div>
+</div>
 
 
 
@@ -198,15 +334,9 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            In recent years, large-scale pre-trained diffusion models have demonstrated their outstanding capabilities in image and video generation tasks. 
-  However, existing models tend to produce visual objects commonly found in the training dataset, which diverges from user input prompts.
-  The underlying reason behind the inaccurate generated results lies in the model's difficulty in sampling from specific intervals of the initial noise distribution corresponding to the prompt.
-  Moreover, it is challenging to directly optimize the initial distribution, given that the diffusion process involves multiple denoising steps.
-  In this paper, we introduce a Fine-tuning Initial Noise Distribution (FIND) framework with policy optimization, which unleashes the powerful potential of pre-trained diffusion networks by directly optimizing the initial distribution to align the generated contents with user-input prompts.  
-  To this end, we first reformulate the diffusion denoising procedure as a one-step Markov decision process and employ policy optimization to directly optimize the initial distribution. 
-  In addition, a dynamic reward calibration module is proposed to ensure training stability during optimization.
-  Furthermore, we introduce a ratio clipping algorithm to utilize historical data for network training and prevent the optimized distribution from deviating too far from the original policy to restrain excessive optimization magnitudes. 
-  Extensive experiments demonstrate the effectiveness of our method in both text-to-image and text-to-video tasks, surpassing SOTA methods in achieving consistency between prompts and the generated content. Our method achieves 10 times faster than the SOTA approach.
+            In recent years, large-scale pre-trained diffusion transformer models have made significant progress in video generation. While current DiT models can produce high-definition, high-frame-rate, and highly diverse videos, there is a lack of fine-grained control over the video content. Controlling the motion of subjects in videos using only prompts is challenging, especially when it comes to describing complex movements. Further, existing methods fail to control the motion in image-to-video generation, as the subject in the reference image often differs from the subject in the reference video in terms of initial position, size, and shape. To address this, we propose the Leveraging Motion Prior (LMP) framework for zero-shot video generation. Our framework harnesses the powerful generative capabilities of pre-trained diffusion transformers to enable motion in the generated videos to reference user-provided motion videos in both text-to-video and image-to-video generation.
+To this end, we first introduce a foreground-background disentangle module to distinguish between moving subjects and backgrounds in the reference video, preventing interference in the target video generation. A reweighted motion transfer module is designed to allow the target video to reference the motion from the reference video. To avoid interference from the subject in the reference video, we propose an appearance separation module to suppress the appearance of the reference subject in the target video.
+We annotate the DAVIS dataset with detailed prompts for our experiments and design evaluation metrics to validate the effectiveness of our method. Extensive experiments demonstrate that our approach achieves state-of-the-art performance in generation quality, prompt-video consistency, and control capability.
           </p>
         </div>
       </div>
@@ -230,7 +360,7 @@
         <h2 class="title is-3">Overview</h2>
 
         <div class="content has-text-justified">
-          <img src="static/find_imgs/fig2_page-0001.jpg" alt="Overview" />
+          <img src="static/lmp_imgs/main.png" alt="Overview" />
           <!-- <p>
             There's a lot of excellent work that was introduced around the same time as ours.
           </p>
@@ -253,88 +383,387 @@
 
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Experiments</h2>
-        <h3 class="title is-4">Quality comparation with SOTA methods</h3>
-        To verify the effectiveness of our method, we conduct both qual-
-itative and quantitative experiments. We compare the proposed
-method with the standard Stable Diffusion v1.5 . Additionally,
-we also compare our approach with state-of-the-art approaches
-DPOK that optimize the entire U-Net using Reinforcement
-Learning to highlight the efficiency and effectiveness of optimizing
-the initial noise. Following the similar setting from DPOK, we
-select four prompts, A green dog is running on the grass, A dog and a
-cat, Four pandas, A dog on the moon, for fair comparison.
+        <h2 class="title is-3">Results</h2>
+        <h3 class="title is-4">Text to Video Results</h3>
+        The videos visually demonstrates the effectiveness of our method in text-to-video setting. It contains four sets of data, where the first line of each set is the reference video, the second line shows the effect of changing the subject prompt while keeping the background prompt unchanged, and the third line illustrates the effect of modifying the background while keeping the subject unchanged. 
+<div class="video-row">
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/t2v/swan/real.mp4" type="video/mp4">
+                
+              </video>
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/t2v/longboard/real.mp4" type="video/mp4">
+             
+              </video>
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/t2v/car/real.mp4" type="video/mp4">
+                
+              </video>
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/t2v/bike/real.mp4" type="video/mp4">
+                
+              </video>
+            </div>
+          </div>
 
-        <img src="static/find_imgs/fig4_page-0001.jpg" alt="Simulation Experiments" >
+
+
+          <div class="video-row">
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/t2v/swan/sub.mp4" type="video/mp4">
+                
+              </video>
+              <p style="text-align: center">A red flamingo...</p>
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/t2v/longboard/sub.mp4" type="video/mp4">
+             
+              </video>
+              <p style="text-align: center">A monkey... </p>
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/t2v/car/sub.mp4" type="video/mp4">
+                
+              </video>
+              <p style="text-align: center">A white rally motorcycle...</p>
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/t2v/bike/sub.mp4" type="video/mp4">
+                
+              </video>
+              <p style="text-align: center">An astronaut...</p>
+            </div>
+          </div>
+
+
+          <div class="video-row">
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/t2v/swan/back.mp4" type="video/mp4">
+                
+              </video>
+              <p style="text-align: center">...on a mountain stream...</p>
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/t2v/longboard/back.mp4" type="video/mp4">
+             
+              </video>
+              <p style="text-align: center">...in a bustling city park...</p>
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/t2v/car/back.mp4" type="video/mp4">
+                
+              </video>
+              <p style="text-align: center">...in an urban setting...</p>
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/t2v/bike/back.mp4" type="video/mp4">
+                
+              </video>
+              <p style="text-align: center">...along a sandy beach...</p>
+            </div>
+          </div>
+        <!-- <img src="static/find_imgs/fig4_page-0001.jpg" alt="Simulation Experiments" > -->
         </p>
-        <h3 class="title is-4">Ablation Study</h3>
-        We conduct ablation studies by utilizing two complex prompts:
-A red book and a yellow vase. and oil portrait of Batman holding
-a picture of Spiderman, intricate, elegant, highly detailed, lighting,
-painting, art station, smooth, illustration, art by Greg Rutkowski and
-Alphonse Mucha. We generate 100 samples for each scenario to
-serve as our test dataset.
-        <img src="static/find_imgs/fig5_page-0001.jpg" alt="Simulation Experiments" >
+        <h3 class="title is-4">Image to Video Results</h3>
+        Different from previous motion-transfer or video-to-video methods that generate videos with structures identical to the reference video, our method imposes minimal manual supervision on the motion. Instead, we leverage DiT's strong generative capabilities to create videos with different overall structures but the same subject motion patterns as the reference video.
         </p>
         <br/>
-  
+        <div class="video-row">
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/i2v/ref-car.mp4" type="video/mp4">
+                
+              </video>
+              <p style="text-align: center">Ref video</p>
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/i2v/ours-rabbit.mp4" type="video/mp4">
+             
+              </video>
+              <p style="text-align: center">A rabbit in the forest...autumn...  </p>
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/i2v/ours-bike.mp4" type="video/mp4">
+                
+              </video>
+              <p style="text-align: center">A cyclist...snow....winter...</p>
+            </div>
+            
+          </div>
 
-      <h3 class="title is-4">Generalize to Video Diffusions</h3>
-      <div class="content has-text-justified">
-        <p>
-          Our approach is theoretically applicable to any diffusion-based
-method, whether it be text-to-image, text-to-video, text-to-3D, and
-so forth. To demonstrate the versatility of our method, we use
-text-to-video as a case study, analyzing its performance both qual-
-itatively and quantitatively. Specifically, we employ ModelScope
- as our baseline model, which is a large-scale text-to-video dif-
-fusion model trained on large-scale datasets. ViCLIP 
-is a pre-trained model used to evaluate the similarity between text
-and video, which is utilized as our reward function. To verify the effectiveness of our method, we
-selected four sets of prompts that the baseline models struggle
-to generate directly: A green dog is running on the grass., A dog
-is running on the moon., A panda is walking on the grass, from
-left to right. and A monkey is playing guitar. These cover unusual
-colors, displacement control, anomalous positions, and abnormal
-behaviors.
+          <div class="video-row">
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/i2v/ref-woman.mp4" type="video/mp4">
+                
+              </video>
+              <p style="text-align: center">Ref video</p>
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/i2v/ours-ast.mp4" type="video/mp4">
+             
+              </video>
+              <p style="text-align: center">An astronaut...on the moon... </p>
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/i2v/ours-tiger.mp4" type="video/mp4">
+                
+              </video>
+              <p style="text-align: center">A Bengal tiger...forest...</p>
+            </div>
+            
+          </div>
+
+
+
+
+
+
+      <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Comparison</h2>
+        To verify the effectiveness of our method, we conducted both quantitative and qualitative experiments. We compared our proposed LMP method with the baseline method, CogVideoX. Since there are no other open-source motion transfer methods based on the DiT architecture currently available, we compared our method with the previous zero-shot SOTA method, DMT \cite{Yatim2023SpaceTimeDF}, which is based on the U-Net architecture. It is important to note that due to limitations imposed by the U-Net-based model, ZeroScope \cite{Sterling2023ZeroScope}, DMT can only generate videos with 24 frames at a resolution of 576×320. To ensure a fair comparison, we also extracted the first 24 frames of the videos generated by our method and reshaped them to the same resolution.
+        <h3 class="title is-4">Text to Video Results</h3>
+        
+<div class="video-row">
+            <div class="video-column">
+              <p style="text-align: center">Ref video</p>
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/dog/real.mp4" type="video/mp4">
+                
+              </video>
+            </div>
+            <div class="video-column">
+              <p style="text-align: center">Baseline</p>
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/dog/ori-prompt/baseline.mp4" type="video/mp4">
+             
+              </video>
+            </div>
+            <div class="video-column">
+              <p style="text-align: center">DMT</p>
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/dog/ori-prompt/dmt.mp4" type="video/mp4">
+                
+              </video>
+            </div>
+            <div class="video-column">
+              <p style="text-align: center">Ours</p>
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/dog/ori-prompt/ours.mp4" type="video/mp4">
+                
+              </video>
+            </div>
+          </div>
+
+
+
+          <div class="video-row">
+            <div class="video-column">
+              <!-- <video controls loop muted playsinline>
+                <source src="static/lmp_videos/t2v/swan/sub.mp4" type="video/mp4">
+                
+              </video> -->
+              <!-- <p style="text-align: center">A red flamingo...</p> -->
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/dog/subject/baseline.mp4" type="video/mp4">
+             
+              </video>
+              <p style="text-align: center">   </p>
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/dog/subject/dmt.mp4" type="video/mp4">
+                
+              </video>
+              <p style="text-align: center"></p>
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/dog/subject/ours.mp4" type="video/mp4">
+                
+              </video>
+              <p style="text-align: center"></p>
+            </div>
+          </div>
+          <p style="text-align: center">A black and orange cat...</p>
+
+          <div class="video-row">
+            <div class="video-column">
+              
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/dog/background/baseline.mp4" type="video/mp4">
+             
+              </video>
+              <!-- <p style="text-align: center">...in a bustling city park...</p> -->
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/dog/background/dmt.mp4" type="video/mp4">
+                
+              </video>
+              <!-- <p style="text-align: center">...in an urban setting...</p> -->
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/dog/background/ours.mp4" type="video/mp4">
+                
+              </video>
+              
+            </div>
+          </div>
+<p style="text-align: center">...on a sandy beach with waves...</p>
+<div class="video-row">
+            <div class="video-column">
+              <p style="text-align: center">Ref video</p>
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/stroller/real.mp4" type="video/mp4">
+                
+              </video>
+            </div>
+            <div class="video-column">
+              <p style="text-align: center">Baseline</p>
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/stroller/ori-prompt/baseline.mp4" type="video/mp4">
+             
+              </video>
+            </div>
+            <div class="video-column">
+              <p style="text-align: center">DMT</p>
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/stroller/ori-prompt/dmt.mp4" type="video/mp4">
+                
+              </video>
+            </div>
+            <div class="video-column">
+              <p style="text-align: center">Ours</p>
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/stroller/ori-prompt/ours.mp4" type="video/mp4">
+                
+              </video>
+            </div>
+          </div>
+
+
+
+          <div class="video-row">
+            <div class="video-column">
+              <!-- <video controls loop muted playsinline>
+                <source src="static/lmp_videos/t2v/swan/sub.mp4" type="video/mp4">
+                
+              </video> -->
+              <!-- <p style="text-align: center">A red flamingo...</p> -->
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/stroller/subject/baseline.mp4" type="video/mp4">
+             
+              </video>
+              <!-- <p style="text-align: center">A monkey... </p> -->
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/stroller/subject/dmt.mp4" type="video/mp4">
+                
+              </video>
+              <!-- <p style="text-align: center">A white rally motorcycle...</p> -->
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/stroller/subject/ours.mp4" type="video/mp4">
+                
+              </video>
+              <!-- <p style="text-align: center">An astronaut...</p> -->
+            </div>
+          </div>
+<p style="text-align: center">A man walks down...</p>
+
+          <div class="video-row">
+            <div class="video-column">
+              
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/stroller/background/baseline.mp4" type="video/mp4">
+             
+              </video>
+              <!-- <p style="text-align: center">...in a bustling city park...</p> -->
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/stroller/background/dmt.mp4" type="video/mp4">
+                
+              </video>
+              <!-- <p style="text-align: center">...in an urban setting...</p> -->
+            </div>
+            <div class="video-column">
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/stroller/background/ours.mp4" type="video/mp4">
+                
+              </video>
+              
+            </div>
+          </div>
+          <p style="text-align: center">...a serene coastal area...</p>
+        <!-- <img src="static/find_imgs/fig4_page-0001.jpg" alt="Simulation Experiments" > -->
         </p>
-        <!-- <h3 class="title is-5">Pants</h3> -->
-          <div class="row">
-            <div class="column">
-              <img src="static/find_videos/green_dog_ori.gif" alt="描述性文本">
+        <h3 class="title is-4">Image to Video Results</h3>
+        </p>
+        <br/>
+        <div class="video-row">
+            <div class="video-column">
+              <p style="text-align: center">Ref video</p>
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/i2v/reference.mp4" type="video/mp4">
+                
+              </video>
+              <!-- <p style="text-align: center">ref video</p> -->
             </div>
-            <div class="column">
-              <img src="static/find_videos/moon_dog_ori.gif" alt="描述性文本">
+            <div class="video-column">
+              <p style="text-align: center">Baseline</p>
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/i2v/baseline.mp4" type="video/mp4">
+             
+              </video>
+              <!-- <p style="text-align: center">A rabbit in the forest...autumn...  </p> -->
             </div>
-            <div class="column">
-              <img src="static/find_videos/panda_ori.gif" alt="描述性文本">
+            <div class="video-column">
+              <p style="text-align: center">Ours</p>
+              <video controls loop muted playsinline>
+                <source src="static/lmp_videos/comparsion/i2v/ours.mp4" type="video/mp4">
+                
+              </video>
+              
             </div>
-            <div class="column">
-              <img src="static/find_videos/monkey_ori.gif" alt="描述性文本">
-            </div>
-          </div> 
+            
+          </div>
+          <p style="text-align: center">A panda with thick fur...</p>
 
 
-
-        <h3 class="title is-5"></h3>
-          <div class="row">
-          <div class="column">
-            <img src="static/find_videos/green_ours.gif" alt="描述性文本">
-            <p>A green dog is running on the grass</p>
-          </div>
-          <div class="column">
-            <img src="static/find_videos/moon_ours.gif" alt="描述性文本">
-            <p>A dog is running on the moon</p>
-          </div>
-          <div class="column">
-            <img src="static/find_videos/panda_ours.gif" alt="描述性文本">
-            <p>A panda is walking on the grass, from left to right</p>
-          </div>
-          <div class="column">
-            <img src="static/find_videos/monkey_ours.gif" alt="描述性文本">
-            <p>A monkey is playing guitar</p>
-          </div>
-          </div> 
+      
 
         
         
@@ -346,10 +775,11 @@ behaviors.
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@inproceedings{chen2024find,
-      title={FIND: Fine-tuning Initial Noise Distribution with Policy Optimization for Diffusion Models},
-      author={Chen, Changgu and Yang, Libing and Yang, Xiaoyan and Chen, Lianggangxu and He, Gaoqi and Wang, Changbo and Li, Yang},
-      booktitle={ACM Multimedia 2024}
+    <pre><code>@article{chen2025lmp,
+      title={LMP: Leveraging Motion Prior in Zero-Shot Video Generation with Diffusion Transformer},
+      author={Chen, Changgu and Yang, Xiaoyan and Shu, Junwei and Wang, Changbo and Li, Yang},
+      journal={arXiv preprint arXiv:2505.14167},
+      year={2025}
     }</code></pre>
   </div>
 </section>
@@ -386,6 +816,9 @@ behaviors.
     </div>
   </div>
 </footer> -->
+
+
+
 
 </body>
 </html>
